@@ -7,7 +7,7 @@ class FileData:
 
 
 
-with open("google private key.json") as file:
+with open("google private key new.json") as file:
   CREDENTIALS = file.read()
 
 r = sr.Recognizer()
