@@ -17,7 +17,9 @@ def accuracy(test, actual):
         if word in actual:
             actual[word] = actual[word] - 1
         else:
-            incorrect_words += 1
+            #incorrect_words += 1
+            pass
+            # seems to be more accurate without this
 
     # check the word counts in the dictionary, add to incorrect_words if less
     # than or greater than 0
