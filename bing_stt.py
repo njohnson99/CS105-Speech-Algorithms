@@ -22,7 +22,7 @@ def handler():
     print("File " + YOUR_AUDIO_FILE + ": " + results)
     # 4. Write to CSV file
     with open('test.csv','w') as f:
-
+    	
 
 def get_token():
     # Return an Authorization Token by making a HTTP POST request to Cognitive Services with a valid API key.
