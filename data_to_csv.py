@@ -5,10 +5,11 @@ class data_to_csv:
 	# filename = name of file
 	# text = outputted text
 	# ED = edit distance
-	# csvname = the name of the csv file you want to write to. 
+	# acc = accuracy checker
+	# csvname = the name of the csv file you want to write to.
 	# 			This must be in format NAME.csv and will create a new csv file in your directory.
 	# Note that all inputs must be in STRING format
-	def data_to_csv(self, cat, filename, text, ED, csvname):
+	def data_to_csv(self, cat, filename, text, ED, acc, csvname):
 		with open(csvname, 'a') as csvfile:
 			filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)

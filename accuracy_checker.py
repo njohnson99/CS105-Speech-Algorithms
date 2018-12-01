@@ -1,5 +1,11 @@
+# How to call:
+#   from accuracy_checker import accuracy_checker
+# Then with the text outputted from the speech-to-text function call:
+#   acc = accuracy(text)
+# and use acc as a parameter for data_to_csv
+
 # test is string and actual is dictionary
-def accuracy(test, actual):
+def accuracy(test, actual = actual):
     # lowercase test string
     test = test.lower()
 
@@ -29,7 +35,7 @@ def accuracy(test, actual):
         elif count > 0:
             incorrect_words += count
 
-    return incorrect_words
+    return str(incorrect_words)
 
 # dictionary for gmu dataset
 actual = {"her" : 4, "the": 3, "and" : 3, "a" : 3, "we" : 2, "things" : 2,
