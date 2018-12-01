@@ -6,8 +6,21 @@ from requests import get  # to make GET request
 import json
 from pprint import pprint
 
+
 FILE_PATH = "aws_temp.json"
+
+
 #job_uri = "http://s3.us-east-2.amazonaws.com/jimwaldo/test/test.wav"
+## FILL IN THE BELOW LIST OF URI's BY UPLOADING AUDIO FILES TO YOUR S3 BUCKET
+## AN EXAMPLE URI IS GIVEN ABOVE.  Here "jimwaldo" is the bucket name,
+#I then have a file named "test.wav" in the "test" folder.
+JOB_URI_LIST = ["replace this"];
+
+#the below is used to assign job names to your jobs.
+#before you run the script, initialize it to an integer or a prefix that you haven't used before
+JOB_NAME_PREFIX = "edit_me"
+BEGINNING_INDEX = 0
+
 
 
 def download(url, file_name):
@@ -46,4 +59,12 @@ def transcribe_from_uri(job_uri, job_name):
   #print(text_response)
 
   print("completed for URI " + job_uri);
+
+#given a list of URIs, transcribe each URI
+#assign a new job_name
+job_index = BEGINNING_INDEX
+for uri in JOB_URI_LIST:
+  transcription = transcribe_from_uri(uri, JOB_NAME_PREFIX + str(job_index))
+  job_index += 1
+
 
