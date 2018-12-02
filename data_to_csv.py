@@ -13,4 +13,4 @@ class data_to_csv:
 		with open(csvname, 'a') as csvfile:
 			filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-			filewriter.writerow([cat, filename, text, ED])
+			filewriter.writerow([cat, filename, text, ED, acc])
