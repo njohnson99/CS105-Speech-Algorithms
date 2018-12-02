@@ -6,18 +6,18 @@ import json
 
 import csv
 import os
-import edit_distance
+from edit_distance_test import Edit
 
-from accurcay_checker import accuracy
+from accuracy_checker import Accuracy
 
 def data_to_csv(cat, filename, text, ED, acc, csvname):
 		with open(csvname, 'a') as csvfile:
 			filewriter = csv.writer(csvfile, delimiter=',')
-			filewriter.writerow([cat, filename, text, ED])
+			filewriter.writerow([cat, filename, text, ED, acc])
 
-def edit_distance(string_a, string_b):
-		distance, matches = edit_distance.edit_distance(string_a, string_b)
-		return distance
+# def edit_distance(string_a, string_b):
+# 		distance, matches = edit_distance.edit_distance(string_a, string_b)
+# 		return distance
 
 hard_text_gmu_dataset = "Please call Stella.  Ask her to bring these things with her from the store:  Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.  We also need a small plastic snake and a big toy frog for the kids.  She can scoop these things into three red bags, and we will go meet her Wednesday at the train station."
 
@@ -39,9 +39,9 @@ try:
                 text = text + parsed_json[i]["alternatives"][0]["transcript"]
             print(text)
 
-            acc = accuracy(text)
-            ED = edit_distance(text, hard_text_gmu_dataset)
-            data_to_csv(cat, filename, text, '', acc, 'IBM.csv')
+            acc = Accuracy.accuracy(text)
+            ED = Edit.edit_dist(text, hard_text_gmu_dataset)
+            data_to_csv(cat, filename, text, ED, acc, 'IBM.csv')
             #print(json.dumps(data, indent=2))
 
         def on_error(self, error):
