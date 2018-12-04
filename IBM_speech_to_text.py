@@ -37,7 +37,7 @@ try:
             parsed_json = json.loads(json_string)["results"]
             for i in range(len(parsed_json)):
                 text = text + parsed_json[i]["alternatives"][0]["transcript"]
-            print(text)
+            print("Added")
 
             acc = Accuracy.accuracy(text)
             ED = Edit.edit_dist(text, hard_text_gmu_dataset)
@@ -56,23 +56,24 @@ try:
     filename = ''
     cat = ''
 
-    folders = ["Test"]
+    folders = ["French", "German", "Korean", "Tagalog", "Vietnamese"]
     for folder in folders:
         cat = folder
         # adjust to your computer path
         your_path = "/Users/sarah/Downloads/105-project/" + folder
         directory = os.fsencode(your_path)
         for file in os.listdir(directory):
-            # mp3 file
-            filename = os.fsdecode(file)
-            with open(folder + "/" + filename,'rb') as audio_file:
-                audio_source = AudioSource(audio_file)
-                speech_to_text.recognize_using_websocket(
-                    audio=audio_source,
-                    content_type='audio/wav',
-                    recognize_callback=myRecognizeCallback,
-                    model='en-US_BroadbandModel',
-                    keywords=[])
+    	    # mp3 file
+    	    text = ''
+    	    filename = os.fsdecode(file)
+    	    with open(folder + "/" + filename,'rb') as audio_file:
+        	    audio_source = AudioSource(audio_file)
+        	    speech_to_text.recognize_using_websocket(
+            	    audio=audio_source,
+            	    content_type='audio/wav',
+            	    recognize_callback=myRecognizeCallback,
+            	    model='en-US_BroadbandModel',
+            	    keywords=[])
 
 except WatsonApiException as ex:
     print("Method failed with status code " + str(ex.code) + ": " + ex.message)
