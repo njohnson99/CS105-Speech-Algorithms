@@ -11,7 +11,7 @@ from os import path
 from pydub import AudioSegment
 
 # place mp3's in folder with dialect name
-folders = ["English"]
+folders = ["French", "German", "Korean", "Tagalog", "Vietnamese"]
 for folder in folders:
     # adjust to your computer path
     your_path = "/Users/sarah/Downloads/105-project/" + folder
@@ -22,13 +22,14 @@ for folder in folders:
         # mp3 file
         filename = os.fsdecode(file)
         # new wav copy of file
-        wav_file = filename[:-3] + "wav"
+        if filename[-3:] == "mp3":
+            wav_file = filename[:-3] + "wav"
 
-        sound = AudioSegment.from_mp3(folder + "/" + filename)
-        sound.export(folder + "/" + wav_file, format="wav")
+            sound = AudioSegment.from_mp3(folder + "/" + filename)
+            sound.export(folder + "/" + wav_file, format="wav")
 
-        # if you run the remove, and then reinstall an mp3, try reinstalling
-        # ffmpeg by running 'brew reinstall ffmpeg'
-        # remove mp3 version
-        os.remove(folder + "/" + filename)
-        print("File Removed")
+            # if you run the remove, and then reinstall an mp3, try reinstalling
+            # ffmpeg by running 'brew reinstall ffmpeg'
+            # remove mp3 version
+            os.remove(folder + "/" + filename)
+            print("File Removed")
