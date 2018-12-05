@@ -8,6 +8,8 @@ from pprint import pprint
 from accuracy_checker import Accuracy
 import edit_distance
 import string
+import csv
+import os
 
 hard_text_gmu_dataset = "Please call Stella.  Ask her to bring these things with her from the store:  Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.  We also need a small plastic snake and a big toy frog for the kids.  She can scoop these things into three red bags, and we will go meet her Wednesday at the train station."
 
@@ -35,7 +37,7 @@ for folder, filePrefix in FOLDERS.items():
 
 #the below is used to assign job names to your jobs.
 #before you run the script, initialize it to an integer or a prefix that you haven't used before
-JOB_NAME_PREFIX = "trial_5_"
+JOB_NAME_PREFIX = "trial_6_"
 BEGINNING_INDEX = 0
 
 def edit_dist(string_a, string_b):
