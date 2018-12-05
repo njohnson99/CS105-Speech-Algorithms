@@ -29,3 +29,4 @@ print('Waiting for operation to complete...')
 response = operation.result(timeout=90)# Detects speech in the audio fileresponse = client.recognize(config, audio)
 for result in response.results:
     print('Transcript: {}'.format(result.alternatives[0].transcript))
+
