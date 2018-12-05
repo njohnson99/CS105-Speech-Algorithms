@@ -11,10 +11,10 @@ from os import path
 from pydub import AudioSegment
 
 # place mp3's in folder with dialect name
-folders = ["English"]
+folders = ["arabic"]
 for folder in folders:
     # adjust to your computer path
-    your_path = "/Users/sarah/Downloads/105-project/" + folder
+    your_path = "/Users/narijohnson/Downloads/accents/" + folder
     directory = os.fsencode(your_path)
 
     # convert mp3 to wav
