@@ -1,23 +1,20 @@
 import speech_recognition as sr
+from google.cloud import speech
+from google.cloud.speech import enums
+from google.cloud.speech import types
 import edit_distance
 import string
 from accuracy_checker import Accuracy
 import csv
 import os
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/narijohnson/Documents/CS105-Speech-Algorithms/google private key new.json"
+
+#this edit_dist script converts common number representations to their text representations
+#here, string a is the one that can have errors
 
 def edit_dist(string_a, string_b):
-
-  # Format strings - remove punctuation and convert to lowercase
-  # Help from https://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python
-  a_format = string_a.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
-  b_format = string_b.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
-  #print(a_format)
-  #print(b_format)
-
-  #sm = edit_distance.SequenceMatcher(a=a_format, b=string_b)
-  distance, matches = edit_distance.edit_distance(a_format, b_format)
-  #distance, matches = sm.distance(), sm.matches()
+  distance, matches = edit_distance.edit_distance(string_a, string_b)
   return distance
 
 class FileData:
@@ -42,19 +39,41 @@ r = sr.Recognizer()
 
 
 def speech_to_text(fileName):
+
   with sr.AudioFile(fileName) as source:
     audio = r.record(source)
+  #audio = types.RecognitionAudio(uri=fileName)
+
 
   text = r.recognize_google_cloud(audio, credentials_json=CREDENTIALS);
   return text;
 
-fileNameList = ['Arabic/arabic1.wav'];
-for file in fileNameList:
-  cat = 'arabic'
-  text = speech_to_text(file)
-  acc = Accuracy.accuracy(text)
-  ED = edit_dist(text, hard_text_gmu_dataset)
-  data_to_csv(cat, file, text, ED, acc, 'google.csv')
+
+folderList = ['Russian']
+for folder in folderList:
+  cat = folder
+  # adjust to your computer path
+  your_path = "/Users/narijohnson/Documents/CS105-Speech-Algorithms/Accents/" + folder
+  directory = os.fsencode(your_path)
+  for file in os.listdir(directory):
+    # mp3 file
+    text = ''
+    filename = os.fsdecode(file)
+    with open("Accents/" + folder + "/" + filename,'rb') as audio_file:
+      text = speech_to_text(audio_file)
+
+      text_format = text.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
+      hard_text_format = hard_text_gmu_dataset.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
+      #let's modify the translated tring to make sure the numbers look like text
+      #5, 6, 5/6, 3
+      numsToWords = {'5':'five', '6': 'six', '5/6': 'five sixths', '3': 'three'}
+      for num, word in numsToWords.items():
+        text_format = text_format.replace(num, word)
+
+      acc = Accuracy.accuracy(text_format)
+      ED = edit_dist(text_format, hard_text_format)
+      data_to_csv(cat, file, text_format, ED, acc, 'google_new1.csv')
+
 
 
 
