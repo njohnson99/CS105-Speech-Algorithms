@@ -7,6 +7,7 @@ import json
 from pprint import pprint
 from accuracy_checker import Accuracy
 import edit_distance
+import string
 
 hard_text_gmu_dataset = "Please call Stella.  Ask her to bring these things with her from the store:  Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.  We also need a small plastic snake and a big toy frog for the kids.  She can scoop these things into three red bags, and we will go meet her Wednesday at the train station."
 
@@ -30,7 +31,7 @@ for folder, filePrefix in FOLDERS.items():
 
 #the below is used to assign job names to your jobs.
 #before you run the script, initialize it to an integer or a prefix that you haven't used before
-JOB_NAME_PREFIX = "trial_one_"
+JOB_NAME_PREFIX = "trial_4_"
 BEGINNING_INDEX = 0
 
 def edit_dist(string_a, string_b):
@@ -71,8 +72,8 @@ def transcribe_from_uri(job_uri, job_name):
 
   text_response = (response['results'])['transcripts'][0]['transcript']
   #print(text_response)
-
-  print("completed for URI " + job_uri);
+  print("completed for URI " + job_uri)
+  return text_response
 
 #given a list of URIs, transcribe each URI
 #assign a new job_name
