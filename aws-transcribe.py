@@ -14,6 +14,10 @@ hard_text_gmu_dataset = "Please call Stella.  Ask her to bring these things with
 
 FILE_PATH = "aws_temp.json"
 
+def data_to_csv(cat, filename, text, ED, acc, csvname):
+    with open(csvname, 'a') as csvfile:
+      filewriter = csv.writer(csvfile, delimiter=',')
+      filewriter.writerow([cat, filename, text, ED, acc])
 
 #job_uri = "http://s3.us-east-2.amazonaws.com/jimwaldo/test/test.wav"
 BUCKET_PREFIX = "http://s3.us-east-2.amazonaws.com/accents/Accents/"
@@ -31,7 +35,7 @@ for folder, filePrefix in FOLDERS.items():
 
 #the below is used to assign job names to your jobs.
 #before you run the script, initialize it to an integer or a prefix that you haven't used before
-JOB_NAME_PREFIX = "trial_4_"
+JOB_NAME_PREFIX = "trial_5_"
 BEGINNING_INDEX = 0
 
 def edit_dist(string_a, string_b):
@@ -79,6 +83,7 @@ def transcribe_from_uri(job_uri, job_name):
 #assign a new job_name
 job_index = BEGINNING_INDEX
 for uri in JOB_URI_LIST:
+  cat = uri
   text = transcribe_from_uri(uri, JOB_NAME_PREFIX + str(job_index))
 
   text_format = text.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
@@ -91,7 +96,10 @@ for uri in JOB_URI_LIST:
 
   acc = Accuracy.accuracy(text_format)
   ED = edit_dist(text_format, hard_text_format)
-  data_to_csv(cat, file, text_format, ED, acc, 'amazon1.csv')
+
+  slash_array = uri.split('/')
+  file_name = slash_array[len(slash_array) - 1]
+  data_to_csv(cat, file_name, text_format, ED, acc, 'amazon1.csv')
 
   job_index += 1
 
