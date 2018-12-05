@@ -1,8 +1,24 @@
 import speech_recognition as sr
-from edit_distance_test import Edit
+import edit_distance
+import string
 from accuracy_checker import Accuracy
 import csv
 import os
+
+
+def edit_dist(string_a, string_b):
+
+  # Format strings - remove punctuation and convert to lowercase
+  # Help from https://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python
+  a_format = string_a.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
+  b_format = string_b.translate(str.maketrans(dict.fromkeys(string.punctuation))).lower()
+  #print(a_format)
+  #print(b_format)
+
+  #sm = edit_distance.SequenceMatcher(a=a_format, b=string_b)
+  distance, matches = edit_distance.edit_distance(a_format, b_format)
+  #distance, matches = sm.distance(), sm.matches()
+  return distance
 
 class FileData:
   def f(self, fileName, database):
@@ -32,11 +48,12 @@ def speech_to_text(fileName):
   text = r.recognize_google_cloud(audio, credentials_json=CREDENTIALS);
   return text;
 
-fileNameList = ['wavex1.wav', 'wavex2.wav', 'wavex3.wav', 'wavex4.wav', 'wavex5.wav', 'wavex6.wav', 'wavex7.wav', 'test.wav'];
+fileNameList = ['Arabic/arabic1.wav'];
 for file in fileNameList:
+  cat = 'arabic'
   text = speech_to_text(file)
   acc = Accuracy.accuracy(text)
-  ED = Edit.edit_dist(text, hard_text_gmu_dataset)
+  ED = edit_dist(text, hard_text_gmu_dataset)
   data_to_csv(cat, file, text, ED, acc, 'google.csv')
 
 
