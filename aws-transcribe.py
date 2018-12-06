@@ -24,9 +24,9 @@ def data_to_csv(cat, filename, text, ED, acc, csvname):
 #job_uri = "http://s3.us-east-2.amazonaws.com/jimwaldo/test/test.wav"
 BUCKET_PREFIX = "http://s3.us-east-2.amazonaws.com/accents/Accents/"
 #FOLDERS = {"Arabic":"arabic", "Bengali":"bengali", "Chinese":"cantonese", "English":"english", "French":"french", "German":"german", "Hindi":"hindi", "Japanese":"japanese", "Korean":"korean", "Portuguese":"portuguese", "Russian":"russian", "Spanish":"spanish", "Tagalog":"tagalog", "Vietnamese":"vietnamese"}
+FOLDERS = {"Hindi":"hindi", "Japanese":"japanese", "Korean":"korean", "Portuguese":"portuguese", "Russian":"russian", "Spanish":"spanish", "Tagalog":"tagalog", "Vietnamese":"vietnamese"}
 
 #Let's begin with just using a few of the folders:
-FOLDERS = {"Chinese":"cantonese", "English":"english", "French":"french"}
 #JOB_URI_LIST = ["replace this"];
 JOB_URI_LIST = [];
 WAV = ".wav"
@@ -37,7 +37,7 @@ for folder, filePrefix in FOLDERS.items():
 
 #the below is used to assign job names to your jobs.
 #before you run the script, initialize it to an integer or a prefix that you haven't used before
-JOB_NAME_PREFIX = "trial_6_"
+JOB_NAME_PREFIX = "trial_9_"
 BEGINNING_INDEX = 0
 
 def edit_dist(string_a, string_b):
