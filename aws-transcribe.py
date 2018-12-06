@@ -26,7 +26,7 @@ BUCKET_PREFIX = "http://s3.us-east-2.amazonaws.com/accents/Accents/"
 #FOLDERS = {"Arabic":"arabic", "Bengali":"bengali", "Chinese":"cantonese", "English":"english", "French":"french", "German":"german", "Hindi":"hindi", "Japanese":"japanese", "Korean":"korean", "Portuguese":"portuguese", "Russian":"russian", "Spanish":"spanish", "Tagalog":"tagalog", "Vietnamese":"vietnamese"}
 
 #Let's begin with just using a few of the folders:
-FOLDERS = {"Arabic":"arabic", "Bengali":"bengali", "Chinese":"cantonese", "English":"english", "French":"french"}
+FOLDERS = {"Chinese":"cantonese", "English":"english", "French":"french"}
 #JOB_URI_LIST = ["replace this"];
 JOB_URI_LIST = [];
 WAV = ".wav"
