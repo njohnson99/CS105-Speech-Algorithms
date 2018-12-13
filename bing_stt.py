@@ -28,23 +28,15 @@ rootpath = '/Users/amydanoff/CS105-Speech-Algorithms/Accents_split'
 #cat = 'Arabic'
 #path = rootpath + '/Arabic'
 
-directory = os.fsencode(path)
+#directory = os.fsencode(path)
 
-testfilepath = '/Users/amydanoff/CS105-Speech-Algorithms/Accents_split/Arabic/arabic1_1.wav'
+#testfilepath = '/Users/amydanoff/CS105-Speech-Algorithms/Accents_split/Arabic/arabic1_1.wav'
 
-#text = ''
- #   filename = ''
-  #  cat = ''
-
- #   folders = ["French", "German", "Korean", "Tagalog", "Vietnamese"]
-    #for folder in folders:
-        #cat = folder
-        # adjust to your computer path
-        #your_path = "/Users/sarah/Downloads/105-project/" + folder
-        #directory = os.fsencode(your_path)
 
 hard_text_gmu_dataset = "Please call Stella.  Ask her to bring these things with her from the store:  Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.  We also need a small plastic snake and a big toy frog for the kids.  She can scoop these things into three red bags, and we will go meet her Wednesday at the train station."
 
+UKnums = [108, 110, 24, 38, 40, 56, 57, 58, 80, 85]
+USnums = [16, 17, 18, 19, 20, 21, 23, 25]
 
 def handler():
     # 1. Get an Authorization Token
@@ -53,18 +45,15 @@ def handler():
     rootpath = '/Users/amydanoff/CS105-Speech-Algorithms/Accents_split'
     currPre = ''
     #categories = ['UKenglish', 'USenglish']
-    categories = ['UKenglish']
+    #categories = ['USenglish']
+    categories = ['Chinese', 'English', 'French', 'German', 'Tagalog', 'Spanish', 'Vietnamese', 'Portuguese', 'Hindi']
 
     for cat in categories:
 
         path = rootpath + '/' + cat
         directory = os.fsencode(path)
 
-        #if cat == 'Chinese':
-            #currPre = 'cantonese10'
-        #else:
-            #currPre = cat.lower() + str(10)
-        currPre = 'english' + str(24)
+        currPre = 'english' + str(9)
         currText = ''
         print(currPre)
         for file in os.listdir(directory):
@@ -92,6 +81,7 @@ def handler():
                     remove = "|.,!?;:"
                     for c in remove:
                         currText = currText.replace(c, '')
+                    cat = 'USenglish'
                     d2c.data_to_csv(cat, currPre, currText, ed, acc, 'bing_output.csv')
                     # reset
                     currText = results
