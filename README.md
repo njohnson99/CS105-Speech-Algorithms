@@ -1,8 +1,8 @@
 # Analyzing Algorithmic Bias in Voice Recognition Technologies
 
-See "CS105FinalPaper.pdf" for a longer report of our findings.
+See [our final paper](https://github.com/njohnson99/CS105-Speech-Algorithms/blob/master/CS105FinalPaper.pdf) for a longer report of our findings.
 
-You can also explore visualizations + summaries in our "CS105 Presentation" PDF.
+You can also explore visualizations + summaries [in our presentation](https://github.com/njohnson99/CS105-Speech-Algorithms/blob/master/CS105%20Presentation.pdf).
 
 *“Everyone who speaks a language, speaks it with an accent.”*
 
