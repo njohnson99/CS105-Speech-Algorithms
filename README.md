@@ -1,5 +1,8 @@
 # Analyzing Algorithmic Bias in Voice Recognition Technologies
 
+See "CS105FinalPaper.pdf" for a longer report of our findings.
+You can also explore visualizations + summaries in our "CS105 Presentation" PDF.
+
 “Everyone who speaks a language, speaks it with an accent.”
 
 This project seeks to analyze algorithmic bias via regional accents in voice recognition technologies built by four prominent technology companies: Google, Amazon, Microsoft, and IBM. Given the increasing use of voice recognition technology in today’s society, it is important to assess claims to universal accessibility. Thus, this project explores the accuracy of four speech-to-text technologies with respect to English spoken by individuals with a variety of common international accents. 
